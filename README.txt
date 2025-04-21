@@ -47,7 +47,7 @@ Installation:
 6. Configure environment variables:
    - Create a .env file in the project root.
    - Define necessary variables (e.g., SECRET_KEY, DATABASE_URL, DEBUG settings, etc.)
-     (You may provide a .env.example file for reference.)
+    
 
 7. Run database migrations:
    python manage.py makemigrations
@@ -93,7 +93,7 @@ workflow practices (branching, pull requests, etc.) when submitting changes.
 License:
 --------
 This project is open-source and available under the MIT License.
-(Include or modify the license information according to your project requirements.)
+
 
 Notes:
 ------
