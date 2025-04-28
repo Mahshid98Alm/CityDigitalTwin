@@ -1,33 +1,11 @@
-from django.shortcuts import render
-from rest_framework import generics
-from .models import Building, City
-from .serializers import BuildingSerializer, CitySerializer
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.reverse import reverse
+from rest_framework.generics import ListAPIView
+from .models import BragaBuildingFinal, LisbonBuildingFinal
+from .serializers import BragaBuildingSerializer, LisbonBuildingSerializer
 
-# API views for Buildings
-class BuildingListCreateView(generics.ListCreateAPIView):
-    queryset = Building.objects.all()
-    serializer_class = BuildingSerializer
+class BragaBuildingListView(ListAPIView):
+    queryset = BragaBuildingFinal.objects.all()
+    serializer_class = BragaBuildingSerializer
 
-class BuildingDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Building.objects.all()
-    serializer_class = BuildingSerializer
-
-# API views for Cities
-class CityListCreateView(generics.ListCreateAPIView):
-    queryset = City.objects.all()
-    serializer_class = CitySerializer
-
-class CityDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = City.objects.all()
-    serializer_class = CitySerializer
-
-# Optional: Create an API root view that points to both buildings and cities endpoints.
-class APIRoot(APIView):
-    def get(self, request, *args, **kwargs):
-        return Response({
-            'buildings': reverse('building-list', request=request),
-            'cities': reverse('city-list', request=request),
-        })
+class LisbonBuildingListView(ListAPIView):
+    queryset = LisbonBuildingFinal.objects.all()
+    serializer_class = LisbonBuildingSerializer
