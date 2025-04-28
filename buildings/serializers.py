@@ -1,12 +1,14 @@
-from rest_framework import serializers
-from .models import Building, City
+from rest_framework_gis.serializers import GeoFeatureModelSerializer # type: ignore
+from .models import BragaBuildingFinal, LisbonBuildingFinal
 
-class BuildingSerializer(serializers.ModelSerializer):
+class BragaBuildingSerializer(GeoFeatureModelSerializer):
     class Meta:
-        model = Building
-        fields = '__all__'
+        model = BragaBuildingFinal
+        geo_field = 'geometry'
+        fields = ('cluster_id', 'height', 'estimate_height')  # Adjust as needed
 
-class CitySerializer(serializers.ModelSerializer):
+class LisbonBuildingSerializer(GeoFeatureModelSerializer):
     class Meta:
-        model = City
-        fields = '__all__'
+        model = LisbonBuildingFinal
+        geo_field = 'geometry'
+        fields = ('cluster_id', 'height', 'estimate_height')
