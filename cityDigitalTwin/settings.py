@@ -11,13 +11,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
-import dj_database_url
 from pathlib import Path
 from decouple import config
-from dotenv import load_dotenv 
 
-# Load .env file
-load_dotenv()
+
+print("Database Host is:", config('DATABASE_HOST', default='localhost'))
 
 
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -88,10 +86,14 @@ WSGI_APPLICATION = 'cityDigitalTwin.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-        'default': dj_database_url.config( 
-        default=os.getenv('DATABASE_URL'),
-        conn_max_age=600, # Optional: keeps DB connections alive for performance
-    )
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': config('DATABASE_NAME', default='citytwindb'),
+        'USER': config('DATABASE_USER', default='citytwinuser'),
+        'PASSWORD': config('DATABASE_PASSWORD', default='strongpassword'),
+        'HOST': config('DATABASE_HOST', default='localhost'),
+        'PORT': config('DATABASE_PORT', default='5432'),
+    }
 }
 
 
