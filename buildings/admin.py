@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import City, Building
-# Register your models here.
+from .models import BragaBuildingFinal, LisbonBuildingFinal
 
-admin.site.register(City)
-admin.site.register(Building)
+admin.site.register(BragaBuildingFinal)
+admin.site.register(LisbonBuildingFinal)
